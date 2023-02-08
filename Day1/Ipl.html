@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Result analyzer and calculator</title>
+    </head>
+    <body>
+        <h1>Result analyzer and calculator</h1>
+
+        <form>
+            <label for ="Team1Name">Team1 Name:</label>
+            <input type="text"id="Team1Name" id="Team1Name">
+            <br><br>
+            <label for ="Team1 Score">Team1 Score:</label>
+            <input type="text"id="Team1Score" id="Team1Score">
+            <br><br>
+            <label for="Team2 Name">Team2 Score:</label>
+            <input type="text" id="Team2Name" id="Team2Name">
+            <br><br>
+            <label for ="Team2 Score">Team2 Score:</label>
+            <input type="text"id="Team2Score" id="Team2Score">
+            <br><br>
+            <button type="button" onclick="calculateResult()">Calculate Result</button> 
+        </form>
+        <br><br>
+        <div id="result"></div>
+        
+        <script>
+            function calculateResult()
+            { var Team1Name= document.getElementById("Team1Name").value;
+              var Team2Name= document.getElementById("Team2Name").value;
+              var Team1Score= document.getElementById("Team1Score").value;
+              var Team2Score= document.getElementById("Team2Score").value;
+
+              var result = document.getElementById("result");
+
+              if(Team1Name == Team2Name)
+              {
+                alert("Team name cannot be same");
+                return;
+              }
+
+              var Team1ScoreArr=Team1Score.split("/");
+              var Team2ScoreArr=Team2Score.split("/");
+
+              if(isNaN(Team1ScoreArr[0])||isNaN(Team1ScoreArr[1])||isNaN(Team2ScoreArr[0])||isNaN(Team2ScoreArr[1]))
+              {
+                alert("Score must be a number");
+                return;
+              }
+
+              if (Team1ScoreArr[1]>10||Team2Score[1]>10)
+              {
+                alert("Overs cannot be more than 10");
+                return;
+              }
+
+              if (Team1ScoreArr[0]>Team2ScoreArr[0])
+              {
+                result.innerHTML =Team1Name + "wins by "+(Team1Score[0]-Team2ScoreArr[0])+"runs";
+              }
+              else
+              {
+                result.innerHTML = Team2Name + "wins by "+ (Team2ScoreArr[0]-Team1ScoreArr[0]) +"runs"
+              }
+            
+            }
+        </script>
+        </body>
+        </html>
+
